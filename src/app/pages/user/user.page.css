@@ -1,0 +1,12 @@
+.form-group{
+    margin: 5px 0;
+}
+.form-group input{
+    width: 100%;
+}
+.validation-message{
+    color: #f00;
+}
+form{
+    width: 600px;
+}

@@ -1,22 +1,37 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { AngularFirestore } from '@angular/fire/firestore';
-
-import { uuid } from 'uuid';
+import { AngularFirestore, DocumentChangeAction } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { User } from '../models/User';
 
 @Injectable({providedIn: 'root'})
 export class UserService{
-    constructor(
-        private http: HttpClient,
-        private db: AngularFirestore
-    ){ }
 
+    private collectionName : string = 'users';
 
-    getbyId(id: string){
-        return this.db.collection('users').doc(id).snapshotChanges();
+    constructor(private db: AngularFirestore){ 
+
+    }
+
+    getbyId(idDocument: string){
+        return this.db.collection(this.collectionName).doc(idDocument).snapshotChanges();
     }
 
     create(data){
-        return this.db.collection('users').add(data);
+        return this.db.collection(this.collectionName).add(data);
+    }
+
+    update(idDocument: string, data){
+        return this.db.collection(this.collectionName).doc(idDocument).update(data);
+    }
+
+    getAll(): Observable<User[]>{
+        return new Observable(subscriber => 
+            this.db.collection(this.collectionName)
+                .snapshotChanges().subscribe(data => subscriber.next(this.mapUsers(data)))
+        );
+    }
+
+    private mapUsers(docs: DocumentChangeAction<{}>[]){
+        return docs.map(x => User.create(x.payload.doc.id, x.payload.doc.data()))
     }
 }
