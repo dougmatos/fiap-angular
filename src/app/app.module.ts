@@ -5,6 +5,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from "@angular/forms";
+import { FilterPipe } from "./pipes/filter.pipe";
+import { OrderPipe } from "./pipes/order.pipe";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,9 +19,12 @@ import { UserPage } from './pages/user/user.page'
 import { HttpClientModule } from '@angular/common/http';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
+    OrderPipe,
+    FilterPipe,
     AppComponent, 
     HeaderComponent,
     UserListPage,
@@ -33,7 +38,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    //ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

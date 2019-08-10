@@ -18,7 +18,7 @@ export class UserPage {
         phone: new FormControl('', [Validators.required])
     });
 
-    private loading: Boolean = false;
+    public loading: Boolean = false;
     private userId: string = "";
 
     public buttonName: string = "Criar";

@@ -2,7 +2,7 @@
     <loading [show]="loading"></loading>
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
         
-        <h4>{{ titleForm }}</h4>
+        <h4>{{ titleForm | uppercase }}</h4>
 
         <div class="form-group">
             <input type="text" name="name" formControlName="name" placeholder="nome" />
