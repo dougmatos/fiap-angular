@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserListPage } from './pages/userList/userList.page'
-import { UserPage } from "./pages/user/user.page";
+import { UserListPage } from './pages/userList/userList.page';
+import { UserPage } from './pages/user/user.page';
 
 const routes: Routes = [
   {path: '', component: UserListPage},

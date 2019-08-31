@@ -1,16 +1,24 @@
 <div>
-    <a class="btn btn-primary"  [routerLink]="['user']">Criar um novo</a>
+    <a class="btn btn-primary btn-lg"  [routerLink]="['user']">
+        <i class="fa fa-user"></i>&nbsp;&nbsp;
+        Criar um novo usuário
+    </a>
     <br /><br />
-    <input type="text" name="filter" placeholder="Filtro" (keyup)="setFilterBy($event)" />
+    <input type="text" class="form-control" name="filter" placeholder="Filtro" (keyup)="setFilterBy($event)" />
     <br /><br />
-    <button (click)="setDirection('asc')">Crescente</button> | <button (click)="setDirection('desc')">Descrescente</button>
+    <button class="btn" [ngClass]="direction == 'asc' ? 'btn-dark' : 'btn-secondary'" (click)="setDirection('asc')">
+        <i class="fa fa-sort-amount-down-alt"></i>&nbsp;&nbsp;Crescente
+    </button> 
+    <button  class="btn ml-3" [ngClass]="direction == 'desc' ? 'btn-dark' : 'btn-secondary'" (click)="setDirection('desc')">
+        <i class="fa fa-sort-amount-down"></i> &nbsp;&nbsp;Descrescente
+    </button>
 
     <br /><br />
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">e-mail</th>
                 <th scope="col">nome</th>
+                <th scope="col">e-mail</th>
                 <th scope="col">idade</th>
                 <th scope="col">telefone</th>
                 <th scope="col">-</th>
@@ -18,8 +26,8 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of this.users | filter: filter | order: direction">
-                <td>{{ user.email }}</td>
                 <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
                 <td>{{ user.age }}</td>
                 <td>{{ user.phone }}</td>
                 <td><a [routerLink]="['/user', user.id]">alterar</a></td>
