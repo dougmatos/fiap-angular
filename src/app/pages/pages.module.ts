@@ -1,18 +1,32 @@
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 
-import { UserComponent } from './user/user.component';
-import { UserListComponent } from './user-list/user-list.component';
+import { environment } from 'src/environments/environment';
+
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SharedModule } from '../shared/shared.module';
+import { ContactListComponent } from './contact-list/contact-list.component';
+import { ContactComponent } from './contact/contact.component';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './logout/logout.component';
+import { ContactDeleteComponent } from './contact-delete/contact-delete.component';
 
 @NgModule({
   declarations: [
-    UserComponent,
-    UserListComponent,
-    NotFoundComponent
+    ContactComponent,
+    ContactListComponent,
+    NotFoundComponent,
+    HomeComponent,
+    RegisterComponent,
+    LogoutComponent,
+    ContactDeleteComponent
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
   ]
 })
 export class PagesModule { }

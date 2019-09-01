@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-12 mb-4">
+        <h4>Entrar</h4>
+        <app-loading [show]="loading"></app-loading>
+    </div>
+
+    <div class="col-12">
+        <form [formGroup]="registerForm">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" name="email" formControlName="email" autocomplete="email" />
+                <span class="text-danger" *ngIf="isInvalid('email')">Digite um e-mail válido</span>
+            </div>
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" name="name" formControlName="name"
+                    autocomplete="username" />
+                <span class="text-danger" *ngIf="isInvalid('name')">O campo "nome" é obrigatório</span>
+            </div>
+            <div class="form-group">
+                <label for="login">Senha</label>
+                <input type="password" class="form-control" name="password" formControlName="password"
+                    autocomplete="current-password" />
+                <span class="text-danger" *ngIf="isInvalid('password')">O campo "senha" é obrigatório</span>
+            </div>
+            <div class="form-group">
+                <label>&nbsp;</label>
+                <button [disabled]="registerForm.invalid" type="submit" (click)="register()"
+                    class="btn btn-primary btn-lg w-100">Registrar</button>
+            </div>
+            <div class="form-group">
+                <a [routerLink]="['/']">Voltar para o login</a>
+            </div>
+        </form>
+    </div>
+</div>

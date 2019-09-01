@@ -8,6 +8,7 @@ import { OrderPipe } from './pipes/order.pipe';
 
 import { LoadingComponent } from './components/loading/loading.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ButtonLogoutComponent } from './components/button-logout/button-logout.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { HeaderComponent } from './components/header/header.component';
     HeaderComponent,
     LoadingComponent,
     FilterPipe,
-    OrderPipe
+    OrderPipe,
+    ButtonLogoutComponent
   ],
   imports: [
     CommonModule,
