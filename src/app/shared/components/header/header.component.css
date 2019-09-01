@@ -1,0 +1,9 @@
+h1{
+    color: rgb(19, 84, 153);
+    border-bottom: 2px dotted rgba(19, 84, 153, .5);
+    padding: 10px; 
+    margin-bottom: 25px;
+}
+h1 span{
+    padding-top: 2px;
+}

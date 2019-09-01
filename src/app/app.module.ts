@@ -1,43 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
-import { FilterPipe } from './pipes/filter.pipe';
-import { OrderPipe } from './pipes/order.pipe';
-
 import { AppComponent } from './app.component';
 
-import { UserListPage } from './pages/userList/userList.page';
-import { UserPage } from './pages/user/user.page';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
+import { PagesModule } from './pages/pages.module';
 
 
 @NgModule({
   declarations: [
-    OrderPipe,
-    FilterPipe,
-    AppComponent,
-    UserListPage,
-    UserPage
+    AppComponent
   ],
   imports: [
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
     BrowserModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    NgbModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    SharedModule
+    HttpClientModule,
+    PagesModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

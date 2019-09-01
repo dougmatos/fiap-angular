@@ -4,7 +4,7 @@
         Criar um novo usuário
     </a>
     <br /><br />
-    <input type="text" class="form-control" name="filter" placeholder="Filtro" (keyup)="setFilterBy($event)" />
+    <input type="text" class="form-control form-control-lg" name="filter" placeholder="Filtro" (keyup)="setFilterBy($event)" />
     <br /><br />
     <button class="btn" [ngClass]="direction == 'asc' ? 'btn-dark' : 'btn-secondary'" (click)="setDirection('asc')">
         <i class="fa fa-sort-amount-down-alt"></i>&nbsp;&nbsp;Crescente

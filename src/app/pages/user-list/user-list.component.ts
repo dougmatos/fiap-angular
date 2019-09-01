@@ -3,18 +3,18 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from '../../models/User';
 
 @Component({
-    templateUrl: './userList.page.html',
-    styleUrls: ['./userList.page.css']
+    templateUrl: './user-list.component.html',
+    styleUrls: ['./user-list.component.css']
 })
-export class UserListPage implements OnInit {
+export class UserListComponent implements OnInit {
 
     public users: User[] = [];
     public filter: string;
     public direction: string;
 
-    constructor(private userService: UserService){ }
+    constructor(private userService: UserService) { }
 
-    setFilterBy(event: any){
+    setFilterBy(event: any) {
         this.filter = event.target.value;
     }
 

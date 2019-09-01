@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserListPage } from './pages/userList/userList.page';
-import { UserPage } from './pages/user/user.page';
+
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { UserComponent } from './pages/user/user.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
 
 const routes: Routes = [
-  {path: '', component: UserListPage},
-  {path: 'user', component: UserPage},
-  {path: 'user/:id', component: UserPage},
+  {path: '',  component: UserListComponent},
+  {path: 'user', component: UserComponent},
+  {path: 'user/:id', component: UserComponent},
+  {path: '404', component: NotFoundComponent},
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({
