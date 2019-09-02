@@ -45,7 +45,6 @@ export class ContactComponent implements OnInit {
 
     isInvalid(itemForm: string) {
         const item = this.contactForm.controls[itemForm];
-        if (itemForm === 'cpf') { console.log(item); }
         return item.invalid && item.touched;
     }
 

@@ -1,27 +1,24 @@
-# AngularAula1
+## Projeto final de Angular
+O projeto é um site onde você faz um cadastro e tem acesso a uma lista de contatos.
+<br>
+### Para inicializar o projeto localmente  
+Clona o projeto no computador com o comando abaixo no terminal
+```bash
+git clone https://github.com/dougmatos/fiap-angular.git
+```  
+Baixe os pacotes com o comando abaixo
+```bash
+cd fiap-angular
+npm install
+```  
+Inicia a aplicação em modo de desenvolvimento
+```bash
+ng serve --open
+```
+Seu navegador será aberto no endereço [http://localhost:4200](http://localhost:4200) na página de login.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.1.
+### Projeto final hospedado  
+Uma versão final está hospedada no firebase hosting [aqui](https://fiap-angular-5e190.web.app/).
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Como usar o site
+Na tela inicial existe um link para "criar uma conta", após o cadastro você terá acesso ao sistema.
