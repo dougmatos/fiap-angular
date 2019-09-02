@@ -1,0 +1,48 @@
+<div>
+    <a class="btn btn-primary"  [routerLink]="['/contact']">
+        <i class="fa fa-user"></i>&nbsp;&nbsp;
+        Criar um novo contato
+    </a>
+    <br /><br />
+    <input type="text" class="form-control form-control-lg" name="filter" placeholder="Filtro por nome" (keyup)="setFilterBy($event)" />
+    <br /><br />
+    <div>
+        <div class="w-100">Ordenar o nome por: </div>
+        <button class="btn" [ngClass]="direction == 'asc' ? 'btn-dark' : 'btn-secondary'" (click)="setDirection('asc')">
+            <i class="fa fa-sort-amount-down-alt"></i>&nbsp;&nbsp;Crescente
+        </button>
+        <button class="btn ml-3" [ngClass]="direction == 'desc' ? 'btn-dark' : 'btn-secondary'" (click)="setDirection('desc')">
+            <i class="fa fa-sort-amount-down"></i> &nbsp;&nbsp;Descrescente
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 mt-3">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">CEP</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Complemento</th>
+                        <th scope="col">-</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of this.users | filter: filter | order: direction">
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.cpf }}</td>
+                        <td>{{ user.cep }}</td>
+                        <td>{{ user.enderecoCompleto }}</td>
+                        <td>{{ user.complemento }}</td>
+                        <td><a [routerLink]="['/contact', user.id]">alterar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

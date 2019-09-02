@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-12">
+        <app-loading [show]="loading"></app-loading>
+    </div>
+    <div class="col-12">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <h4 class="col-12">{{ titleForm | uppercase }}</h4>
+                <div class="form-group col-12">
+                    <a [routerLink]="['/contact/', userId, 'delete']" *ngIf="canExclude" class="btn btn-danger" type="button">Excluir o cadastro</a>
+                </div>
+                <div class="form-group col-12">
+                    <input maxlength="11" type="text" name="cpf" formControlName="cpf" placeholder="CPF" class="form-control" />
+                    <div class="validation-message" *ngIf="isInvalid('cpf')">Digite um CPF válido</div>
+                </div>
+                <div class="form-group col-12">
+                    <input type="text" name="name" formControlName="name" placeholder="nome" class="form-control" />
+                    <div class="validation-message" *ngIf="isInvalid('name')">O campo "nome" é obrigatório</div>
+                </div>
+                <div class="form-group col-12">
+                    <input type="email" name="email" formControlName="email" placeholder="e-mail" class="form-control" />
+                    <div class="validation-message" *ngIf="isInvalid('email')">O campo e-mail é obrigatório</div>
+                </div>
+
+                <h4 class="col-12">Endereço</h4>
+                <div class="form-group col-12">
+                    <input type="text" maxlength="9" name="cep" formControlName="cep" placeholder="CEP" class="form-control" />
+                    <div class="validation-message" *ngIf="isInvalid('cep')">Digite um CEP válido</div>
+                </div>
+                <div class="form-group col-12">
+                    <select formControlName="rua" name="rua" class="form-control">
+                        <option value="rua">Rua</option>
+                        <option value="av">Av.</option>
+                    </select>
+                </div>
+                <div class="form-group col-12">
+                    <input type="text" name="ruaNome" formControlName="ruaNome" placeholder="Endereço" class="form-control" />
+                    <div class="validation-message" *ngIf="isInvalid('ruaNome')">O campo "endereço" é obrigatório</div>
+                </div>
+                <div class="form-group col-12">
+                    <input type="text" name="numero" formControlName="numero" placeholder="Número" class="form-control" />
+                    <div class="validation-message" *ngIf="isInvalid('numero')">O campo "número" é obrigatório</div>
+                </div>
+                <div class="form-group col-12">
+                    <input type="text" name="complemento" formControlName="complemento" placeholder="Complemento" class="form-control" />
+                </div>
+                <div class="form-group col-12">
+                    <a class="btn btn-secondary col-5" [routerLink]="['/contacts']">voltar para lista</a>
+                    <button class="btn btn-primary col-6 offset-1" type="submit" [disabled]="!contactForm.valid">{{ buttonName }}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

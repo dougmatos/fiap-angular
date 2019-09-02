@@ -1,45 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
-import { environment } from '../environments/environment';
-import { ReactiveFormsModule } from "@angular/forms";
-import { FilterPipe } from "./pipes/filter.pipe";
-import { OrderPipe } from "./pipes/order.pipe";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 
-import { HeaderComponent } from "./compoments/header/header.component";
-import { LoadingComponent } from "./compoments/loading/loading.component";
-
-import { UserListPage } from "./pages/userList/userList.page";
-import { UserPage } from './pages/user/user.page'
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
+import { PagesModule } from './pages/pages.module';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
-    OrderPipe,
-    FilterPipe,
-    AppComponent, 
-    HeaderComponent,
-    UserListPage,
-    UserPage,
-    LoadingComponent
+    AppComponent
   ],
   imports: [
-    AngularFireModule.initializeApp(environment.firebaseConfig),
- 	  AngularFirestoreModule,
     BrowserModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HttpClientModule,
-    ReactiveFormsModule,
-    NgbModule,
-    //ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    PagesModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

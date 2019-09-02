@@ -1,37 +1,43 @@
-import { Injectable } from "@angular/core";
-import { AngularFirestore, DocumentChangeAction } from '@angular/fire/firestore';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
-import { User } from '../models/User';
 
-@Injectable({providedIn: 'root'})
-export class UserService{
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
 
-    private collectionName : string = 'users';
+  constructor(private fireAuth: AngularFireAuth, private router: Router) { }
 
-    constructor(private db: AngularFirestore){ 
+  public async login(email: string, password: string) {
 
+    try {
+      await this.fireAuth.auth.signInWithEmailAndPassword(email, password);
+      this.router.navigate(['/contacts']);
+    } catch (error) {
+      alert(error.message);
     }
+  }
 
-    getbyId(idDocument: string){
-        return this.db.collection(this.collectionName).doc(idDocument).snapshotChanges();
-    }
+  public async register(email: string, name: string, password: string) {
 
-    create(data){
-        return this.db.collection(this.collectionName).add(data);
-    }
+    const result =  await this.fireAuth.auth.createUserWithEmailAndPassword(email, password);
+    result.additionalUserInfo.username = name;
+  }
 
-    update(idDocument: string, data){
-        return this.db.collection(this.collectionName).doc(idDocument).update(data);
-    }
+  public async logout() {
 
-    getAll(): Observable<User[]>{
-        return new Observable(subscriber => 
-            this.db.collection(this.collectionName)
-                .snapshotChanges().subscribe(data => subscriber.next(this.mapUsers(data)))
-        );
-    }
+    await this.fireAuth.auth.signOut();
+    this.router.navigate(['/']);
+  }
 
-    private mapUsers(docs: DocumentChangeAction<{}>[]){
-        return docs.map(x => User.create(x.payload.doc.id, x.payload.doc.data()))
-    }
+  public isLogged(): Observable<boolean> {
+
+    return new Observable<boolean>(subscribe => {
+      this.fireAuth.authState.subscribe(user => {
+        subscribe.next(user ? true : false);
+      });
+    });
+  }
 }
